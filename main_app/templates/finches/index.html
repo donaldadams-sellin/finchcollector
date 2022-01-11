@@ -1,5 +1,11 @@
 {% extends 'base.html' %} 
 {% block content %}
-
+<h1>All Finches</h1>
+{% for finch in finches %}
+    <h4>{{ finch.name }}</h4>
+    <p>Color: {{ finch.color }}</p>
+    <p>{{ finch.name }}'s favorite music: {{ finch.favorite_music }}</p>
+    <p>Age: {{ finch.age }}</p>
+{% endfor %}    
 
 {% endblock %}

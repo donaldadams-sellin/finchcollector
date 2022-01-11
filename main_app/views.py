@@ -9,4 +9,5 @@ def about(request):
     return render(request, 'about.html')
 
 def finch_index(request):
-    return render(request, 'finches/index.html')
+    finches = Finch.objects.all()
+    return render(request, 'finches/index.html', {'finches':finches})
