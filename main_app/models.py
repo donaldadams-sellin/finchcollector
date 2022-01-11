@@ -6,3 +6,6 @@ class Finch(models.Model):
     color = models.CharField(max_length=25)
     favorite_music = models.CharField(max_length=25)
     age = models.IntegerField()
+
+    def __str__(self):
+        return f'{self.id} - {self.name}'
