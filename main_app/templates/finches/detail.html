@@ -1,4 +1,15 @@
-<h4>{{ finch.name }}</h4>
-    <p>Color: {{ finch.color }}</p>
-    <p>{{ finch.name }}'s favorite music: {{ finch.favorite_music }}</p>
-    <p>Age: {{ finch.age }}</p>
+{% extends 'base.html' %}
+{% block content %}
+    <div class="card" style="width: 25rem;">
+        <div class="card-content">
+        <a href="{% url 'finches_detail' finch.id %}"><h4 class="card-title">{{ finch.name }}</h4> </a>
+        <p>Color: {{ finch.color }}</p>
+        <p>{{ finch.name }}'s favorite music: {{ finch.favorite_music }}</p>
+        <p>Age: {{ finch.age }}</p>
+    </div>
+    <div class="card-action">
+        <a href="{% url 'finches_update' finch.id %}">Edit</a>
+        <a href="{% url 'finches_delete' finch.id %}">Delete</a>
+    </div>
+    </div>
+{% endblock %}
