@@ -1,8 +1,18 @@
 from django.db import models
+from django.db.models.fields.related import ManyToManyField
 from django.urls import reverse
 
 # Create your models here.
 
+class Toy(models.Model):
+    name = models.CharField(max_length=25)
+    color = models.CharField(max_length=25)
+
+    def __str__(self):
+        return f'Toy {self.id} - {self.name}'
+    
+    def get_absolute_url(self):
+        return reverse('toys_detail', kwargs={'toy_id': self.id})
 
 
 class Finch(models.Model):
@@ -10,6 +20,7 @@ class Finch(models.Model):
     color = models.CharField(max_length=25)
     favorite_music = models.CharField(max_length=25)
     age = models.IntegerField()
+    toys = ManyToManyField(Toy)
 
     def __str__(self):
         return f'{self.id} - {self.name}'
