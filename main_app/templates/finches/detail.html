@@ -38,6 +38,49 @@
     <input type="submit" value="Add Feeding" class="btn">
 </form>
 
+<h3>{{ finch.name }}'s Toys</h3>
+    {% if finch.toys.count %}
+      {% for toy in finch.toys.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+              A {{ toy.color }} {{ toy.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'remove_toy' finch.id toy.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn">Remove</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>No Toys :(</h5>
+    {% endif %}
+
+
+    <h3>Available Toys</h3>
+    {% if toys.count %}
+      {% for toy in toys.all %}
+        <div class="card">
+          <div class="card-content">
+            <span class="card-title">
+                A {{ toy.color }} {{ toy.name }}
+            </span>
+          </div>
+          <div class="card-action">
+            <form action="{% url 'assoc_toy' finch.id toy.id %}" method="POST">
+              {% csrf_token %}
+              <button type="submit" class="btn">Add</button>
+            </form>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <h5>{{finch.name}} has all toys</h5>
+    {% endif %}
+
 <script>
     const dateEl = document.getElementById('id_date');
     M.Datepicker.init(dateEl, {
